@@ -1,0 +1,148 @@
+:root {
+  /* Renk Paleti */
+  --bg-dark: #1e1e2e;
+  --card-bg: #2a2a3a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b8b8b8;
+  --accent: #bb86fc;
+  --pastel-pink: #f5c3c2;
+  --pastel-green: #c1f0c1;
+  --header-bg: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+}
+
+/* Banner Alanı */
+.site-banner {
+  background: var(--header-bg);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.site-banner h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+/* Görsel Alanları */
+.post-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.image-placeholder {
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+/* Logout Butonu */
+.logout-btn {
+  background: transparent;
+  border: 1px solid var(--pastel-pink);
+  color: var(--pastel-pink);
+  margin-left: 1rem;
+}
+
+.logout-btn:hover {
+  background: rgba(245, 195, 194, 0.1);
+}
+.image-placeholder {
+  background: var(--card-bg);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  gap: 1rem;
+}
+
+.image-placeholder i {
+  font-size: 3rem;
+  color: var(--accent);
+}
+/* Login Form Animasyonu */
+.login-form {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: scaleY(0);
+  opacity: 0;
+  transform-origin: top center;
+}
+
+.login-form.active {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* Tema Butonu Animasyonu */
+.theme-toggle {
+  transition: all 0.3s ease;
+}
+/* TEMEL YAPILANDIRMA */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #1e1e2e;
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+/* HEADER */
+.site-header {
+  background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* NAVİGASYON */
+.user-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* BUTONLAR */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #bb86fc;
+  color: white;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #f5c3c2;
+  color: #f5c3c2;
+}
+
+/* İÇERİK ALANI */
+.main-content {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* FOOTER */
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
