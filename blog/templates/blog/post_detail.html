@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<article class="post">
+  {% if post.image %}
+    <img src="{{ post.image.url }}" class="post-image" alt="{{ post.title }}">
+  {% else %}
+    <div class="post-image image-placeholder">
+      <i class="fas fa-image"></i>
+      <span>Görsel Yok</span>
+    </div>
+  {% endif %}
+  
+  <h1>{{ post.title }}</h1>
+  <div class="post-content">
+    {{ post.content|linebreaks }}
+  </div>
+</article>
+
+<div class="back-buttons">
+  <a href="javascript:history.back()" class="btn btn-outline">← Geri Dön</a>
+  <a href="{% url 'post_list' %}" class="btn btn-primary">🏠 Ana Sayfa</a>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Modern Blog{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <h1><a href="/">Melike Yılmaz</a></h1>
+
+    <div class="header-content">
+      {% if user.is_authenticated %}
+	  {% if user.is_authenticated and user.is_staff %}
+  <a href="/admin/" class="btn btn-outline">🛠 Yönetim Paneli</a>
+{% endif %}
+
+        <span class="welcome-msg">Hoş geldin, {{ user.username }}!</span>
+        <form action="{% url 'logout' %}" method="post" class="logout-form">
+          {% csrf_token %}
+          <button type="submit" class="auth-btn">
+            <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+          </button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}" class="auth-btn">
+          <i class="fas fa-sign-in-alt"></i> Giriş Yap
+        </a>
+      {% endif %}
+      <button id="themeToggle" class="theme-btn">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    {% block content %}
+    <!-- İçerik burada değişir -->
+    {% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Melike YILMAZ</p>
+  </footer>
+
+  <script src="{% static 'blog/js/main.js' %}"></script>
+  <script src="{% static 'blog/js/theme.js' %}"></script>
+</body>
+</html>
