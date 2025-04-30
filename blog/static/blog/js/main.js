@@ -1,30 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Tema Değiştirme Fonksiyonu
-  const themeToggle = document.getElementById('themeToggle');
-  const currentTheme = localStorage.getItem('theme') || 'dark';
-
-  // Başlangıç temasını ayarla
-  document.body.setAttribute('data-theme', currentTheme);
-  updateThemeIcon();
-
-  // Tema değiştirme butonu
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function() {
-      const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      document.body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcon();
-    });
-  }
-
-  function updateThemeIcon() {
-    if (!themeToggle) return;
-    const currentTheme = document.body.getAttribute('data-theme');
-    themeToggle.innerHTML = currentTheme === 'dark' 
-      ? '<i class="fas fa-sun"></i>' 
-      : '<i class="fas fa-moon"></i>';
-  }
-
   // Login Form Toggle
   const loginToggle = document.getElementById('loginToggle');
   const loginForm = document.getElementById('loginForm');
@@ -34,23 +8,23 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       loginForm.classList.toggle('active');
       
-      // Dışarı tıklamada kapat
-      document.addEventListener('click', function closeForm(event) {
-        if (!loginForm.contains(event.target) {
+      function closeForm(event) {
+        if (!loginForm.contains(event.target) && event.target !== loginToggle) {
           loginForm.classList.remove('active');
           document.removeEventListener('click', closeForm);
         }
-      });
+      }
+      
+      document.addEventListener('click', closeForm);
     });
   }
 
   // Logout butonu onayı
-// Logout butonuna onay ekle
-document.querySelectorAll('form[action*="logout"]').forEach(form => {
-  form.addEventListener('submit', (e) => {
-    if (!confirm('Çıkış yapmak istediğinize emin misiniz?')) {
-      e.preventDefault();
-    }
+  document.querySelectorAll('form[action*="logout"]').forEach(form => {
+    form.addEventListener('submit', (e) => {
+      if (!confirm('Çıkış yapmak istediğinize emin misiniz?')) {
+        e.preventDefault();
+      }
+    });
   });
 });
-};

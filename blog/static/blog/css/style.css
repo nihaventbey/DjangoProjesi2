@@ -1,246 +1,297 @@
-:root {
-  /* Renk Paleti */
+
+/* Tema Renkleri */
+[data-theme="dark"] {
   --bg-dark: #1e1e2e;
   --card-bg: #2a2a3a;
   --text-primary: #e0e0e0;
   --text-secondary: #b8b8b8;
-  --accent: #bb86fc;
-  --pastel-pink: #f5c3c2;
-  --pastel-green: #c1f0c1;
-  --header-bg: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+  --accent: #7a8fa6;
+  --accent-hover: #5a6e82;
+  --text-light: #ffffff;
+  --header-bg: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
 }
 
-/* Banner Alanı */
-.site-banner {
-  background: var(--header-bg);
-  color: white;
-  padding: 3rem 2rem;
-  text-align: center;
-  margin-bottom: 2rem;
+[data-theme="light"] {
+  --bg-dark: #f0f4f8;
+  --card-bg: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --accent: #7a8fa6;
+  --accent-hover: #5a6e82;
+  --text-light: #000000;
+  --header-bg: linear-gradient(135deg, #cbd5e1 0%, #a5b4fc 100%);
 }
 
-.site-banner h1 {
-  font-size: 2.5rem;
-  margin: 0;
-}
-
-/* Görsel Alanları */
-.post-image {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-}
-
-.image-placeholder {
-  background: var(--card-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  font-size: 1.2rem;
-}
-
-/* Logout Butonu */
-.logout-btn {
-  background: transparent;
-  border: 1px solid var(--pastel-pink);
-  color: var(--pastel-pink);
-  margin-left: 1rem;
-}
-
-.logout-btn:hover {
-  background: rgba(245, 195, 194, 0.1);
-}
-.image-placeholder {
-  background: var(--card-bg);
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  font-size: 1.2rem;
-  gap: 1rem;
-}
-
-.image-placeholder i {
-  font-size: 3rem;
-  color: var(--accent);
-}
-/* Login Form Animasyonu */
-.login-form {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  transform: scaleY(0);
-  opacity: 0;
-  transform-origin: top center;
-}
-
-.login-form.active {
-  transform: scaleY(1);
-  opacity: 1;
-}
-
-/* Tema Butonu Animasyonu */
-.theme-toggle {
-  transition: all 0.3s ease;
-}
-/* TEMEL YAPILANDIRMA */
+/* Genel Yapı */
 body {
   font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
   margin: 0;
   padding: 0;
-  min-height: 100vh;
-  background-color: #1e1e2e;
-  color: #e0e0e0;
   transition: all 0.3s ease;
 }
 
-/* HEADER */
+/* Başlık */
 .site-header {
-  background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+  background: var(--header-bg);
   padding: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--text-light);
 }
 
-/* NAVİGASYON */
-.user-nav {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+.site-header h1 a {
+  color: var(--text-light);
+  text-decoration: none;
 }
 
-/* BUTONLAR */
-.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-primary {
-  background: #bb86fc;
-  color: white;
-}
-
-.btn-outline {
+/* Tema Butonu */
+.theme-btn {
   background: transparent;
-  border: 1px solid #f5c3c2;
-  color: #f5c3c2;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-/* İÇERİK ALANI */
+/* Ana İçerik */
 .main-content {
   max-width: 1200px;
   margin: 2rem auto;
   padding: 0 1.5rem;
+  background-color: var(--bg-dark);
 }
 
-/* FOOTER */
-.site-footer {
-  text-align: center;
+/* Yazılar */
+.post {
+  background-color: var(--card-bg);
   padding: 1.5rem;
-  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
-/* Login Sayfası Stilleri */
-/* Login Form Stilleri */
+
+.post h2 {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+
+.post time {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Login Form */
 .login-form-container {
-    max-width: 500px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  padding: 2rem;
+  max-width: 400px;
+  margin: 3rem auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .login-form-container h2 {
-    text-align: center;
-    color: var(--pastel-pink);
-    margin-bottom: 1.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-}
-
-.form-group input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--text-secondary);
-    border-radius: 8px;
-    background: transparent;
-    color: var(--text-primary);
-}
-
-.login-btn {
-    width: 100%;
-    padding: 0.75rem;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
 }
 
 .login-error {
-    color: #ff6b6b;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    border-radius: 8px;
-    background: rgba(255, 107, 107, 0.1);
-}
-/* blog/static/blog/css/style.css */
-.logout-form {
-  display: inline;
-  margin-left: 1rem;
+  background-color: #ffdddd;
+  color: #a94442;
+  border: 1px solid #e0b4b4;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  text-align: center;
 }
 
-.btn-outline {
-  background: transparent;
-  border: 1px solid var(--pastel-pink);
-  color: var(--pastel-pink);
-  padding: 0.5rem 1rem;
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--accent);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 50px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
-.btn-outline:hover {
-  background: rgba(245, 195, 194, 0.1);
+.login-btn:hover {
+  background-color: var(--accent-hover);
 }
-.auth-btn {
-  background: var(--accent-color);
+
+/* Footer */
+.site-footer {
+  background-color: var(--card-bg);
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin-top: 2rem;
+}
+/* Linkler için genel ayarlar */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--accent);
+}
+
+a:active {
+  color: var(--accent-hover);
+}
+.site-header h1 {
+  flex-grow: 1;
+  text-align: center;
+  margin: 0;
+}
+.back-buttons {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.btn-admin {
+  background: #7a8fa6;
   color: white;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none;
-  display: inline-flex;
+  transition: background-color 0.3s ease;
+}
+
+.btn-admin:hover {
+  background: #5a6e82;
+}
+.post-list-item {
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.post-text {
+  flex-grow: 1;
+}
+
+.post-thumb img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+/* Genel bağlantı (post kutusu) */
+.post-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
   transition: all 0.3s ease;
 }
 
-.auth-btn:hover {
-  background: var(--accent-hover);
+/* Post kutusu */
+.post-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
 }
 
-.welcome-msg {
-  margin-right: 1rem;
-  color: var(--text-light);
+/* Post başlık ve metin alanı */
+.post-text {
+  flex-grow: 1;
 }
 
-.logout-form {
-  display: inline;
+/* Thumbnail görseli */
+.post-thumb img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Hover efekti: Kutunun tamamında */
+.post-link:hover .post-list-item {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* Hover efekti: Sadece görsel */
+.post-link:hover .post-thumb img {
+  box-shadow: 0 0 10px rgba(123, 144, 166, 0.7);
+}
+/* Post bağlantısı genel */
+.post-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+/* Link hover olduğunda tüm yazılarda alt çizgi OLMASIN */
+.post-link:hover {
+  text-decoration: none;
+}
+
+/* Sadece başlık (h2) içinde hover efekti */
+.post-link:hover h2 {
+  text-decoration: underline;
+  color: var(--accent-hover);
+}
+/* Başlık animasyonu ve hover efekti */
+.post-link h2 {
+  transition: all 0.3s ease;
+}
+
+/* Hover olduğunda sadece h2'ye animasyon uygula */
+.post-link:hover h2 {
+  text-decoration: underline;
+  color: var(--accent-hover);
+  transform: translateY(-2px); /* Hafif yukarı zıplatma */
 }

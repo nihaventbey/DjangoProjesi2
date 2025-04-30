@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggle = document.querySelector('#themeToggle');  // Burada düzeltildi
+    if (!themeToggle) return;  // Eğer bulunamazsa hiçbir şey yapma
+
     const icon = themeToggle.querySelector('i');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     
@@ -13,10 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', currentTheme);
         
         // İkonu güncelle
-        if (currentTheme === 'dark') {
-            icon.classList.replace('fa-sun', 'fa-moon');
-        } else {
-            icon.classList.replace('fa-moon', 'fa-sun');
+        if (icon) {
+            if (currentTheme === 'dark') {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
         }
     };
     

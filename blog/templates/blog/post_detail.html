@@ -16,4 +16,9 @@
     {{ post.content|linebreaks }}
   </div>
 </article>
+
+<div class="back-buttons">
+  <a href="javascript:history.back()" class="btn btn-outline">← Geri Dön</a>
+  <a href="{% url 'post_list' %}" class="btn btn-primary">🏠 Ana Sayfa</a>
+</div>
 {% endblock %}
