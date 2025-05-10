@@ -35,16 +35,26 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
    
-    def save(self, *args, **kwargs):
-        if self.image and self.cropping:
-            thumbnailer = get_thumbnailer(self.image)
-            if self.image.name:
-                try:
-                    thumbnailer.delete_thumbnails()
-                except Exception:
-                    pass  # ilk kayıt sırasında olabilir
 
-        super().save(*args, **kwargs)
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
+
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = RichTextUploadingField()
+    image = models.ImageField(upload_to='post_images/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    # Otomatik kırpılmış versiyon
+    image_1200x300 = ImageSpecField(
+        source='image',
+        processors=[ResizeToFill(1200, 300)],
+        format='JPEG',
+        options={'quality': 90}
+    )
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])
+
 
  
 

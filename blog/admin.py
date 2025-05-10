@@ -22,7 +22,7 @@ class PostAdminForm(forms.ModelForm):
 # ------------ PostAdmin ------------
 class PostAdmin(ImageCroppingMixin, admin.ModelAdmin):
     form = PostAdminForm
-    list_display = ('title', 'created_at', 'image_tag')
+    list_display = ('title', 'image_tag')
     readonly_fields = ('image_tag',)
 
     def image_tag(self, obj):

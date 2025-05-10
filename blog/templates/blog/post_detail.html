@@ -5,13 +5,8 @@
 
   {% if post.image %}
     <div class="post-cover-banner">
-<img src="{% thumbnail post.image 1200x300 crop=post.cropping %}" alt="{{ post.title }}">
+    <img src="{{ post.image_1200x300.url }}" alt="{{ post.title }}">
     </div>
-  {% else %}
-   <!-- <div class="post-image image-placeholder">
-      <i class="fas fa-image"></i>
-      <span>Görsel Yok</span>
-    </div> -->
   {% endif %}
 
   <div class="post-text">
