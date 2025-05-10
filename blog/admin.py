@@ -1,21 +1,35 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django import forms
+from image_cropping import ImageCroppingMixin
 from .models import Post, SiteSettings, MenuItem, StaticPage
 
-# ------------ PostAdmin ------------
+
+# ------------ PostAdminForm ------------
 class PostAdminForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = '__all__'
         widgets = {
-            'image': forms.ClearableFileInput(attrs={'style': 'display:none;', 'id': 'hidden_image_input'})
+            'image': forms.ClearableFileInput(attrs={
+                'style': 'display:none;',
+                'id': 'hidden_image_input'
+            })
         }
 
-class PostAdmin(admin.ModelAdmin):
+
+# ------------ PostAdmin ------------
+class PostAdmin(ImageCroppingMixin, admin.ModelAdmin):
     form = PostAdminForm
     list_display = ('title', 'created_at', 'image_tag')
     readonly_fields = ('image_tag',)
+
+    def image_tag(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" width="150" style="border-radius:8px;" />', obj.image.url)
+        return "-"
+    image_tag.short_description = "Önizleme"
 
     class Media:
         js = ('blog/js/admin_image_toggle.js',)
@@ -27,7 +41,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
     list_display = ('site_name', 'contact_email', 'phone_number')
 
     def has_add_permission(self, request):
-        return not SiteSettings.objects.exists()  # Sadece 1 tane eklenebilsin
+        return not SiteSettings.objects.exists()
 
 
 # ------------ MenuItemAdmin ------------

@@ -1,11 +1,11 @@
 {% extends "blog/base.html" %}
-
+{% load thumbnail %}
 {% block content %}
 <article class="post">
 
   {% if post.image %}
-    <div class="post-image-header">
-      <img src="{{ post.image.url }}" alt="{{ post.title }}">
+    <div class="post-cover-banner">
+<img src="{% thumbnail post.image 1200x300 crop=post.cropping %}" alt="{{ post.title }}">
     </div>
   {% else %}
    <!-- <div class="post-image image-placeholder">

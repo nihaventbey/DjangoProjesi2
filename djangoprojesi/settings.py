@@ -19,7 +19,17 @@ INSTALLED_APPS = [
     'blog',
     'ckeditor',
     'ckeditor_uploader',
+    'easy_thumbnails',
+    'image_cropping',
 ]
+
+from easy_thumbnails.conf import Settings as thumbnail_settings
+DEFAULT_THUMBNAIL_PROCESSORS = thumbnail_settings.THUMBNAIL_PROCESSORS
+
+THUMBNAIL_PROCESSORS = (
+    'image_cropping.thumbnail_processors.crop_corners',
+) + DEFAULT_THUMBNAIL_PROCESSORS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
