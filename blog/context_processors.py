@@ -1,9 +1,7 @@
 from .models import SiteSettings, MenuItem
 
 def site_context(request):
-    settings = SiteSettings.objects.first()
-    menu = MenuItem.objects.all()
     return {
-        'site_settings': settings,
-        'menu_items': menu
+        'site_settings': SiteSettings.objects.first(),
+        'menu_items': MenuItem.objects.all().order_by('order')
     }

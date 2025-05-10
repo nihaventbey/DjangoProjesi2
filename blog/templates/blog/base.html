@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Modern Blog{% endblock %}</title>
+  <title>{% block title %}{{ site_settings.site_name }}{% endblock %} | Resul YILMAZ</title>
+  <meta name="description" content="{{ site_settings.site_description }}">
+<meta name="keywords" content="{{ site_settings.site_keywords }}">
   {% load static %}
   <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -30,7 +32,7 @@
     <div class="header-visual" style="background-image: url('{{ site_settings.header_image.url }}');">
       <div class="header-overlay">
         <div class="header-top">
-          <h1 class="site-title"><a href="/">Blog Denemesi</a></h1>
+          <h1 class="site-title"><a href="/">{{ site_settings.site_name }}</a></h1>
         </div>
         <nav class="navbar">
           <ul class="nav-menu">
@@ -49,7 +51,8 @@
   </main>
 
   <footer class="site-footer">
-    <p>© 2025 Melike YILMAZ</p>
+  <p>{{ site_settings.footer_text }}</p>
+  <p>İletişim: {{ site_settings.contact_email }} | Tel: {{ site_settings.phone_number }}</p>
   </footer>
 
   <script src="{% static 'blog/js/main.js' %}"></script>
