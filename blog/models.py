@@ -36,3 +36,46 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
+        
+
+class SiteSettings(models.Model):
+    site_name = models.CharField(max_length=100, default="Blog Sitesi")
+    site_description = models.TextField(blank=True)
+    site_keywords = models.CharField(max_length=255, blank=True)
+    contact_email = models.EmailField(blank=True)
+    phone_number = models.CharField(max_length=20, blank=True)
+    address = models.TextField(blank=True)
+    footer_text = models.CharField(max_length=255, blank=True)
+    header_image = models.ImageField(upload_to='headers/', blank=True, null=True)
+
+    def __str__(self):
+        return self.site_name
+
+    class Meta:
+        verbose_name = "Site Ayarı"
+        verbose_name_plural = "Site Ayarları"
+
+
+class MenuItem(models.Model):
+    title = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+    order = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['order']
+
+
+class StaticPage(models.Model):
+    title = models.CharField(max_length=150)
+    slug = models.SlugField(unique=True)
+    content = RichTextUploadingField()  # CKEditor desteği varsa
+    is_published = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('static_page', kwargs={'slug': self.slug})

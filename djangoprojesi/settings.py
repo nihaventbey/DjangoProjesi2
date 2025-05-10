@@ -49,6 +49,11 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATES[0]['OPTIONS']['context_processors'] += [
+    'blog.context_processors.site_context',
+]
+
+
 WSGI_APPLICATION = 'djangoprojesi.wsgi.application'
 
 DATABASES = {

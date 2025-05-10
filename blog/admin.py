@@ -1,24 +1,9 @@
 from django.contrib import admin
-from .models import Post
-
-class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at', 'image_tag')
-    readonly_fields = ('image_tag',)
-
-    def image_preview(self, obj):
-        if obj.image:
-            return f'<img src="{obj.image.url}" width="150" />'
-        return "Görsel Yok"
-    image_preview.short_description = "Önizleme"
-    image_preview.allow_tags = True
-
-admin.site.register(Post, PostAdmin)
-
-from django.contrib import admin
-from .models import Post
 from django.utils.safestring import mark_safe
 from django import forms
+from .models import Post, SiteSettings, MenuItem, StaticPage
 
+# ------------ PostAdmin ------------
 class PostAdminForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -29,7 +14,36 @@ class PostAdminForm(forms.ModelForm):
 
 class PostAdmin(admin.ModelAdmin):
     form = PostAdminForm
+    list_display = ('title', 'created_at', 'image_tag')
     readonly_fields = ('image_tag',)
 
     class Media:
         js = ('blog/js/admin_image_toggle.js',)
+
+
+# ------------ SiteSettingsAdmin ------------
+@admin.register(SiteSettings)
+class SiteSettingsAdmin(admin.ModelAdmin):
+    list_display = ('site_name', 'contact_email', 'phone_number')
+
+    def has_add_permission(self, request):
+        return not SiteSettings.objects.exists()  # Sadece 1 tane eklenebilsin
+
+
+# ------------ MenuItemAdmin ------------
+@admin.register(MenuItem)
+class MenuItemAdmin(admin.ModelAdmin):
+    list_display = ('title', 'url', 'order')
+
+
+# ------------ StaticPageAdmin ------------
+@admin.register(StaticPage)
+class StaticPageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'is_published')
+    list_filter = ('is_published',)
+    search_fields = ('title', 'slug')
+    prepopulated_fields = {'slug': ('title',)}
+
+
+# ------------ Post kayıt ------------
+admin.site.register(Post, PostAdmin)
